@@ -24,6 +24,10 @@ def charts(request):
     return render(request, "charts.html",)
 
 
+def check(request):
+    return render(request, "check.html",)
+
+
 def forms(request):
     return render(request, "forms.html",)
 
