@@ -25,7 +25,17 @@ def charts(request):
 
 
 def check(request):
-    return render(request, "check.html",)
+    if request.method == 'GET':
+        return render(request, 'check.html')
+    elif request.method == 'POST':
+        obj = request.FILES.get('fafafa')
+        # f = open(os.path.join('uploadFiles', obj.name), 'wb')
+        f = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
+        for line in obj.chunks():
+            f.write(line)
+        f.close()
+        # return HttpResponse('上传成功')
+        return render(request, "check.html", {"data": "上传成功"})
 
 
 def forms(request):
