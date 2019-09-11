@@ -28,7 +28,7 @@ def check(request):
     if request.method == 'GET':
         return render(request, 'check.html')
     elif request.method == 'POST':
-        obj = request.FILES.get('fafafa')
+        obj = request.FILES.get('fileInputed')
         # f = open(os.path.join('uploadFiles', obj.name), 'wb')
         f = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
         for line in obj.chunks():
