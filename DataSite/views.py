@@ -29,13 +29,17 @@ def check(request):
         return render(request, 'check.html')
     elif request.method == 'POST':
         obj = request.FILES.get('fileInputed')
-        # f = open(os.path.join('uploadFiles', obj.name), 'wb')
-        f = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
-        for line in obj.chunks():
-            f.write(line)
-        f.close()
-        # return HttpResponse('上传成功')
-        return render(request, "check.html", {"data": "上传成功"})
+        if obj is None:
+            checkList = ['未选择校验文件']
+            return render(request, "check.html", {"checkList": checkList})
+        else:
+            # f = open(os.path.join('uploadFiles', obj.name), 'wb')
+            f = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
+            for line in obj.chunks():
+                f.write(line)
+            f.close()
+            checkList = ['physics', 'chemistry', 1997, 2000]
+            return render(request, "check.html", {"checkList": checkList})
 
 
 def forms(request):
