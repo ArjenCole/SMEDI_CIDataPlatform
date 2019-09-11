@@ -35,7 +35,7 @@ def check(request):
             return render(request, "check.html", {"checkList": checkList})
         else:
             # f = open(os.path.join('uploadFiles', obj.name), 'wb')
-            tFile = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
+            tFile = open('D:\\UPLOADFILE\\' + obj.name, 'wb')
             for line in obj.chunks():
                 tFile.write(line)
             tFile.close()
