@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+from DataSite import viewscheck
 # Create your views here.
 
 
@@ -34,11 +35,12 @@ def check(request):
             return render(request, "check.html", {"checkList": checkList})
         else:
             # f = open(os.path.join('uploadFiles', obj.name), 'wb')
-            f = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
+            tFile = open('F:\\UPLOADFILE\\' + obj.name, 'wb')
             for line in obj.chunks():
-                f.write(line)
-            f.close()
-            checkList = ['physics', 'chemistry', 1997, 2000]
+                tFile.write(line)
+            tFile.close()
+            # checkList = ['physics', 'chemistry', 1997, 2000]
+            checkList = viewscheck.CheckFile(tFile)
             return render(request, "check.html", {"checkList": checkList})
 
 
