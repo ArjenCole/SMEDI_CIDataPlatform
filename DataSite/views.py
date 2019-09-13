@@ -25,6 +25,10 @@ def charts(request):
     return render(request, "charts.html",)
 
 
+def retrieval(request):
+    return render(request, "retrieval.html",)
+
+
 def check(request):
     if request.method == 'GET':
         return render(request, 'check.html')
