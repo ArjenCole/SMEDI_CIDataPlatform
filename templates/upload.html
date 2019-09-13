@@ -126,7 +126,7 @@
           <!-- Sidebar Navidation Menus--><span class="heading">项目管理</span>
           <ul class="list-unstyled">
                     <li><a href="/index/"> <i class="icon-home"></i> 首 页 </a></li>
-                    <li><a href="/tables/"> <i class="icon-grid"></i>数据检索 </a></li>
+                    <li><a href="/retrieval/"> <i class="icon-grid"></i>数据检索 </a></li>
                     <li><a href="/check/"> <i class="icon-padnote"></i>成果校验 </a></li>
                     <li class="active"><a href="/upload/"> <i class="icon-paper-airplane"></i>成果上传 </a></li>
                     <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>资 料 库 </a>
@@ -178,13 +178,17 @@
                       <form class="form-horizontal" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group column">
-                          <label for="fileInput" class="col-sm-3 form-control-label">成果文件</label>
-                          <div class="card-body text-center">
-                            <input id="fileInput" name="fileInputed1" type="file" required data-msg="请选择文件" class="form-control-file">
-                          </div>
-                          <label for="fileInput" class="col-sm-3 form-control-label">审核记录</label>
-                          <div class="card-body text-center">
-                            <input id="fileInput" name="fileInputed2" type="file" required data-msg="请选择文件" class="form-control-file">
+                            <div class="form-group row">
+                              <label for="fileInput" class="col-sm-3 form-control-label">成果文件</label>
+                              <div class="col-sm-9">
+                                <input id="fileInput" name="fileInputed1" type="file" required data-msg="请选择文件" class="form-control-file">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="fileInput" class="col-sm-3 form-control-label">审核文件</label>
+                              <div class="col-sm-9">
+                              <input id="fileInput" name="fileInputed2" type="file" required data-msg="请选择文件" class="form-control-file">
+                            </div>
                           </div>
                           <div class="card-body text-center">
                             <div class="line"></div>
