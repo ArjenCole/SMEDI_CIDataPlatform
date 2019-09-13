@@ -45,6 +45,10 @@ def check(request):
             return render(request, "check.html", {"checkList": checkList})
 
 
+def upload(request):
+    return render(request, "upload.html",)
+
+
 def forms(request):
     return render(request, "forms.html",)
 
