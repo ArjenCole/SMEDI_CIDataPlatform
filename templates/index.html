@@ -24,12 +24,12 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-<!--甘特图-->
-	<link rel="stylesheet" type="text/css" href="../static/jQueryGantt/lib/jquery-ui-1.8.4.css" />
-	<link rel="stylesheet" type="text/css" href="../static/jQueryGantt/example/reset.css" />
+    <!--甘特图-->
+	<!--link rel="stylesheet" type="text/css" href="../static/jQueryGantt/lib/jquery-ui-1.8.4.css" /-->
+	<!--link rel="stylesheet" type="text/css" href="../static/jQueryGantt/example/reset.css" /-->
 	<link rel="stylesheet" type="text/css" href="../static/jQueryGantt/jquery.ganttView.css" />
-  </head>
-  <body>
+</head>
+<body>
     <div class="page">
       <!-- Main Navbar-->
       <header class="header">
@@ -210,11 +210,42 @@
               </div>
             </div>
           </section>
-          <section class="dashboard-header">
+          <section class="dashboard-counts no-padding-bottom">
             <div class="container-fluid">
-              <div class="row">
-                <!-- Line Chart            -->
+              <div class="row bg-white has-shadow">
+                    <div id="ganttChart"></div>
+                    <br/><br/>
+                    <div id="eventMessage"></div>
 
+                    <script type="text/javascript" src="../static/jQueryGantt/lib/jquery-1.4.2.js"></script>
+                    <script type="text/javascript" src="../static/jQueryGantt/lib/date.js"></script>
+                    <script type="text/javascript" src="../static/jQueryGantt/lib/jquery-ui-1.8.4.js"></script>
+                    <script type="text/javascript" src="../static/jQueryGantt/jquery.ganttView.js"></script>
+                    <script type="text/javascript" src="../static/jQueryGantt/example/data.js"></script>
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#ganttChart").ganttView({
+                                data: ganttData,
+                                slideWidth: 900,
+                                behavior: {
+                                    onClick: function (data) {
+                                        var msg = "You clicked on an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                        $("#eventMessage").text(msg);
+                                    },
+                                    onResize: function (data) {
+                                        var msg = "You resized an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                        $("#eventMessage").text(msg);
+                                    },
+                                    onDrag: function (data) {
+                                        var msg = "You dragged an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                        $("#eventMessage").text(msg);
+                                    }
+                                }
+                            });
+
+                            // $("#ganttChart").ganttView("setSlideWidth", 600);
+                        });
+                    </script>
               </div>
             </div>
           </section>
@@ -233,17 +264,17 @@
             </div>
           </footer>
         </div>
+
+
+
+
+
+
       </div>
     </div>
-    <!-- JavaScript files-->
-    <script src="../static/vendor/jquery/jquery.min.js"></script>
-    <script src="../static/vendor/popper.js/umd/popper.min.js"> </script>
-    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../static/vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="../static/vendor/chart.js/Chart.min.js"></script>
-    <script src="../static/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="../static/js/charts-home.js"></script>
-    <!-- Main File-->
-    <script src="../static/js/front.js"></script>
-  </body>
+
+
+
+
+</body>
 </html>
