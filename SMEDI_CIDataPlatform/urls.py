@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^forms/', views.forms),
     url(r'^tables/', views.tables),
     url(r'^login/', views.login),
+    url(r'^gantt/', views.gantt),
     url('', views.login)
 ]
 
