@@ -9,6 +9,11 @@ def index(request):
     return render(request, "index.html",)
 
 
+def home(request):
+    # return HttpResponse("hello world!")
+    return render(request, "home.html",)
+
+
 def login(request):
     return render(request, "login.html",)
 

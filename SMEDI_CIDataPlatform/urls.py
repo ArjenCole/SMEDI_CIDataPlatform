@@ -20,6 +20,7 @@ from DataSite import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^index/', views.index),
+    url(r'^home/', views.home),
     url(r'^register/', views.register),
     url(r'^charts/', views.charts),
     url(r'^retrieval/', views.retrieval),
