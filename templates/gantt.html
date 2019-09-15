@@ -30,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="../static/jQueryGantt/jquery.ganttView.css" />
 </head>
 <body>
+
     <div class="page">
       <!-- Main Navbar-->
       <header class="header">
@@ -155,129 +156,45 @@
               <h2 class="no-margin-bottom"> 首 页 </h2>
             </div>
           </header>
-          <!-- Dashboard Counts Section-->
-          <section class="dashboard-counts no-padding-bottom">
-            <div class="container-fluid">
-              <div class="row bg-white has-shadow">
-                <!-- Item -->
-                <div class="col-xl-3 col-sm-6">
-                  <div class="item d-flex align-items-center">
-                    <div class="icon bg-green"><i class="icon-website"></i></div>
-                    <div class="title"><span>任&nbsp&nbsp&nbsp&nbsp务<br>进行中</span>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
-                      </div>
-                    </div>
-                    <div class="number"><strong>4</strong></div>
-                  </div>
-                </div>
-                <!-- Item -->
-                <div class="col-xl-3 col-sm-6">
-                  <div class="item d-flex align-items-center">
-                    <div class="icon bg-violet"><i class="icon-interface-windows"></i></div>
-                    <div class="title"><span>任&nbsp&nbsp&nbsp&nbsp务<br>待开展</span>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
-                      </div>
-                    </div>
-                    <div class="number"><strong>3</strong></div>
-                  </div>
-                </div>
-                <!-- Item -->
-                <div class="col-xl-3 col-sm-6">
-                  <div class="item d-flex align-items-center">
-                    <div class="icon bg-orange"><i class="icon-list-1"></i></div>
-                    <div class="title"><span>任&nbsp&nbsp&nbsp&nbsp务<br>已完成</span>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
-                      </div>
-                    </div>
-                    <div class="number"><strong>52</strong></div>
-                  </div>
-                </div>
-                <!-- Item -->
-                <div class="col-xl-3 col-sm-6">
-                  <div class="item d-flex align-items-center">
-                    <div class="icon bg-red"><i class="icon-paper-airplane"></i></div>
-                    <div class="title"><span>成&nbsp&nbsp&nbsp&nbsp果<br>已上传</span>
-                      <div class="progress">
-                        <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
-                      </div>
-                    </div>
-                    <div class="number"><strong>20</strong></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section class="col-lg-12">
-            <div class="card">
-              <div class="card-header d-flex align-items-center">
-                <h3 class="h4">任务进度</h3>
-              </div>
-              <div class="card-body text-center">
-                    <div id="ganttChart"></div>
-                    <br/><br/>
-                    <div id="eventMessage"></div>
+
+
+
+
+            <div id="ganttChart"></div>
+            <br/><br/>
+            <div id="eventMessage"></div>
 
                     <script type="text/javascript" src="../static/jQueryGantt/lib/jquery-1.4.2.js"></script>
                     <script type="text/javascript" src="../static/jQueryGantt/lib/date.js"></script>
                     <script type="text/javascript" src="../static/jQueryGantt/lib/jquery-ui-1.8.4.js"></script>
                     <script type="text/javascript" src="../static/jQueryGantt/jquery.ganttView.js"></script>
                     <script type="text/javascript" src="../static/jQueryGantt/example/data.js"></script>
-                    <script type="text/javascript">
-                        $(function () {
-                            $("#ganttChart").ganttView({
-                                data: ganttData,
-                                slideWidth: 900,
-                                behavior: {
-                                    onClick: function (data) {
-                                        var msg = "You clicked on an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
-                                        $("#eventMessage").text(msg);
-                                    },
-                                    onResize: function (data) {
-                                        var msg = "You resized an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
-                                        $("#eventMessage").text(msg);
-                                    },
-                                    onDrag: function (data) {
-                                        var msg = "You dragged an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
-                                        $("#eventMessage").text(msg);
-                                    }
-                                }
-                            });
+            <script type="text/javascript">
+                $(function () {
+                    $("#ganttChart").ganttView({
+                        data: ganttData,
+                        slideWidth: 900,
+                        behavior: {
+                            onClick: function (data) {
+                                var msg = "You clicked on an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                $("#eventMessage").text(msg);
+                            },
+                            onResize: function (data) {
+                                var msg = "You resized an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                $("#eventMessage").text(msg);
+                            },
+                            onDrag: function (data) {
+                                var msg = "You dragged an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+                                $("#eventMessage").text(msg);
+                            }
+                        }
+                    });
 
-                            // $("#ganttChart").ganttView("setSlideWidth", 600);
-                        });
-                    </script>
-              </div>
-            </div>
-          </section>
-          <!-- Page Footer-->
-          <footer class="main-footer">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-sm-6">
-                  <p>Copyright &copy; 2019.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">cssmoban</a>
-                </div>
-                <div class="col-sm-6 text-right">
-                  <p></p>
-                  <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-                </div>
-              </div>
-            </div>
-          </footer>
+                    // $("#ganttChart").ganttView("setSlideWidth", 600);
+                });
+            </script>
         </div>
-
-
-
-
-
-
       </div>
     </div>
-
-
-
-
 </body>
 </html>

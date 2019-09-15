@@ -61,3 +61,7 @@ def upload(request):
 def forms(request):
     return render(request, "forms.html",)
 
+
+def gantt(request):
+    return render(request, "gantt.html",)
+
