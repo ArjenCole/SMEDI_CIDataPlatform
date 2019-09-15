@@ -116,7 +116,7 @@ behavior: {
             applyLastClass(div.parent());
 		}
 		
-		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
 
 		// Creates a 3 dimensional array [year][month][day] of every day 
 		// between the given start and end dates
