@@ -20,14 +20,14 @@ from DataSite import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^index/', views.index),
-    url(r'^home/', views.home),
+    url(r'^home/', views.index),
     url(r'^register/', views.register),
-    url(r'^charts/', views.charts),
+    url(r'^charts/', views.index),
     url(r'^retrieval/', views.retrieval),
     url(r'^check/', views.check),
     url(r'^upload/', views.upload),
-    url(r'^forms/', views.forms),
-    url(r'^tables/', views.tables),
+    url(r'^forms/', views.index),
+    url(r'^tables/', views.index),
     url(r'^login/', views.login),
     url(r'^gantt/', views.gantt),
     url('', views.login)
