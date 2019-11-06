@@ -440,6 +440,8 @@
                         width = ((end_d - start_d + 1) * 60);
                         lastend_d=end_d;
                         console.log(left_offset);
+//TODO:跨月份甘特图绘制
+//TODO:超出图示范围甘特图绘制
                         html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
                     }
                     document.getElementById('container').innerHTML += `<div class="gantt-item" >${html}</div>`;
