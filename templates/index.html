@@ -49,7 +49,7 @@
                 box-sizing: border-box;
             }
             .gantt-item {
-                width: 1800px;
+                width: 1500px;
             }
             .gantt-item:hover{
                 background:rgba(0,0,0,.1);
@@ -253,9 +253,9 @@
                     <div class="card-header d-flex align-items-center">
                       <h3 class="h4">任务进度</h3>
                     </div>
-                    <div class="card-body text-center">
+                    <div class="card-body text-left">
                           <div id="container">
-                              <div style="background:#ccc;width: 100px;float:left">车牌号</div>
+                              <div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>
                               <div id="hour" style="float:left">
                               </div>
                               <div class="carNum">
@@ -342,19 +342,25 @@
                 innerData: [
                 {
                 start: '2019/11/6 5:23',
-                end: '2019/11/21 6:05',
+                end: '2019/11/7 6:05',
                 value: 'A站点',
                 bg: 'red'
                 },
                 {
-                start: '2019/1/21 10:23',
-                end: '2019/1/21 13:45',
+                start: '2019/11/9 5:23',
+                end: '2019/11/10 6:05',
+                value: 'A站点',
+                bg: 'yellow'
+                },
+                {
+                start: '2019/11/11 10:23',
+                end: '2019/11/12 13:45',
                 value: 'B站点',
                 bg: 'green'
                 },
                 {
-                start: '2019/1/21 21:00',
-                end: '2019/1/22 3:35',
+                start: '2019/11/13 21:00',
+                end: '2019/11/14 3:35',
                 value: 'C站点',
                 bg: 'yellow'
                 },
@@ -369,25 +375,25 @@
                 innerData: [
                 {
                 start: '2019/11/6 8:23',
-                end: '2019/11/10 10:05',
+                end: '2019/11/7 10:05',
                 value: 'A站点',
                 bg: 'blue'
                 },
                 {
-                start: '2019/1/21 13:23',
-                end: '2019/1/21 14:45',
+                start: '2019/11/8 13:23',
+                end: '2019/1/9 14:45',
                 value: 'B站点',
                 bg: 'green'
                 },
                 {
-                start: '2019/1/21 22:00',
-                end: '2019/1/22 3:35',
+                start: '2019/11/10 22:00',
+                end: '2019/11/11 3:35',
                 value: 'C站点',
                 bg: 'red'
                 },
                 {
-                start: '2019/1/22 4:00',
-                end: '2019/1/22 7:35',
+                start: '2019/11/12 4:00',
+                end: '2019/11/13 7:35',
                 value: 'D站点',
                 bg: 'green'
                 },
@@ -421,21 +427,23 @@
                     var innerData = data[m].innerData;
                     var html = ''
                     html =`<span style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
-                    var allLeft = 920 - 240*m;
+                    var allLeft = 0;
+                    var lastend_d = today - 1;
                     for (let i = 0; i< innerData.length; i++) {
                         var start = new Date(innerData[i].start),
                         end = new Date(innerData[i].end),
                         bg = innerData[i].bg,
                         start_d = start.getDate(),
                         end_d = end.getDate(),
-                        left_offset = (start_d - today) * 60;
-                        _left_offset = left_offset - allLeft;
+                        left_offset = (start_d - lastend_d - 1) * 60
+                        _left_offset = left_offset;
                         width = ((end_d - start_d + 1) * 60);
-                        allLeft = left_offset + width;
+                        lastend_d=end_d;
+                        console.log(left_offset);
                         html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
                     }
                     document.getElementById('container').innerHTML += `<div class="gantt-item" >${html}</div>`;
-                    console.log(`<div class="gantt-item" >${html}</div>`);
+                    //console.log(`<div class="gantt-item" >${html}</div>`);
                 }
             }
         }
