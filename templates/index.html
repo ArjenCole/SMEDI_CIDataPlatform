@@ -34,7 +34,6 @@
                 overflow: scroll;
             }
             .carNum {
-                float:left;
                 width:100px;
                 text-align: center;
             }
@@ -256,13 +255,11 @@
                     </div>
                     <div class="card-body text-center">
                           <div id="container">
-                              <div id="hour" style="float:right">
+                              <div style="background:#ccc;width: 100px;float:left">车牌号</div>
+                              <div id="hour" style="float:left">
                               </div>
-                              <div style="background:#ccc;">车牌号</div>
                               <div class="carNum">
-                                  <div style="line-height:30px;">张三</div>
-                                  <div style="line-height:30px;">李四</div>
-                                  <div style="line-height:30px;">王五</div>
+                                  <div style="line-height:0px;color:#fff;">.</div><!--不知道为啥不能删！-->
                               </div>
                           </div>
                     </div>
@@ -310,6 +307,11 @@
         var gantt = {
             demoData: [
             {
+                staff:[
+                    {
+                        name:'张三'
+                    }
+                ],
                 innerData: [
                     {
                         start: '2019/11/6',
@@ -332,12 +334,17 @@
                 ]
             },
             {
+                staff:[
+                    {
+                        name:'里斯本'
+                    }
+                ],
                 innerData: [
                 {
-                start: '2019/1/21 5:23',
-                end: '2019/1/21 6:05',
+                start: '2019/11/6 5:23',
+                end: '2019/11/21 6:05',
                 value: 'A站点',
-                bg: 'blue'
+                bg: 'red'
                 },
                 {
                 start: '2019/1/21 10:23',
@@ -354,10 +361,15 @@
                 ]
             },
             {
+                staff:[
+                    {
+                        name:'王五'
+                    }
+                ],
                 innerData: [
                 {
-                start: '2019/1/21 8:23',
-                end: '2019/1/21 10:05',
+                start: '2019/11/6 8:23',
+                end: '2019/11/10 10:05',
                 value: 'A站点',
                 bg: 'blue'
                 },
@@ -401,22 +413,15 @@
                 }
                 document.getElementById('hour').innerHTML = html;
             },
-            // 当前时间线
-            showNowTime: function() {
-                var date = new Date();
-                var h = date.getHours(),
-                m = date.getMinutes();
-                var offset = (h - 5) * 60 + m;
-                var html = `<div class="nowTime" style="margin-left:${offset}px"></div>`;
-                document.getElementById('container').innerHTML += `<div class="gantt-item">${html}</div>`;
-            },
             createData: function() {
                 var data = this.demoData;
                 var today = new Date().getDate(); // 今天的日期
                 for (let m = 0; m< data.length; m++) {
+                    var staff = data[m].staff[0].name;
                     var innerData = data[m].innerData;
-                    var html = '';
-                    var allLeft = 558;
+                    var html = ''
+                    html =`<span style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
+                    var allLeft = 920 - 240*m;
                     for (let i = 0; i< innerData.length; i++) {
                         var start = new Date(innerData[i].start),
                         end = new Date(innerData[i].end),
@@ -426,15 +431,11 @@
                         left_offset = (start_d - today) * 60;
                         _left_offset = left_offset - allLeft;
                         width = ((end_d - start_d + 1) * 60);
-                        console.log(start_d ,end_d,_left_offset,allLeft);
-
-
-
-
                         allLeft = left_offset + width;
                         html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
                     }
                     document.getElementById('container').innerHTML += `<div class="gantt-item" >${html}</div>`;
+                    console.log(`<div class="gantt-item" >${html}</div>`);
                 }
             }
         }
