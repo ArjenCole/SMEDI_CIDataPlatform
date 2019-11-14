@@ -41,7 +41,7 @@
                 width: 1350px;
             }
             #hour div{
-                width: 60px;
+                width: 30px;
                 float: left;
                 border-left: 1px solid #ddd;
                 background: #ccc;
@@ -55,7 +55,7 @@
                 background:rgba(0,0,0,.1);
             }
             .gantt-item span {
-                height: 20px;;
+                height: 20px;
                 display: inline-block;
                 margin: 5px 0px;
                 font-size: 12px;
@@ -414,7 +414,7 @@
                 var today = new Date();
                 var thisMonth = today.getMonth() + 1;
                 var thisDay = today.getDate();
-                for (let i = thisDay; i < thisDay + 22; i++){
+                for (let i = thisDay; i < thisDay + 45; i++){
                     html += `<div>${i}</div>`
                 }
                 document.getElementById('hour').innerHTML = html;
@@ -435,9 +435,9 @@
                         bg = innerData[i].bg,
                         start_d = start.getDate(),
                         end_d = end.getDate(),
-                        left_offset = (start_d - lastend_d - 1) * 60
+                        left_offset = (start_d - lastend_d - 1) * 30
                         _left_offset = left_offset;
-                        width = ((end_d - start_d + 1) * 60);
+                        width = ((end_d - start_d + 1) * 30);
                         lastend_d=end_d;
                         console.log(left_offset);
 //TODO:跨月份甘特图绘制
