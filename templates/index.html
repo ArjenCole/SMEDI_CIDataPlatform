@@ -415,7 +415,7 @@
                 var thisMonth = today.getMonth() + 1;
                 var thisDay = today.getDate();
                 for (let i = thisDay; i < thisDay + 22; i++){
-                    html += `<div>${thisMonth} - ${i}</div>`
+                    html += `<div>${i}</div>`
                 }
                 document.getElementById('hour').innerHTML = html;
             },
