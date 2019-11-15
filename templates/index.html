@@ -406,7 +406,7 @@
                 this.createHours();
                 this.createData();
             },
-            // 创建时间
+            // 创建表头
             createHours: function(){
                 var html = '';
                 html +=`<div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>`
@@ -414,7 +414,9 @@
                 var thisMonth = today.getMonth() + 1;
                 var thisDay = today.getDate();
                 for (let i = thisDay; i < thisDay + 47; i++){
-                    html += `<div>${i}</div>`
+                    var tStr = new Date();
+                    tStr.setDate(today.getDate() + i - 1);
+                    html += `<div>${tStr.getDate()}</div>`
                 }
                 document.getElementById('hour').innerHTML = html;
             },
@@ -443,7 +445,6 @@
                         html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
                     }
                     document.getElementById('container').innerHTML += `<div class="gantt-item" >${html}</div>`;
-                    //console.log(`<div class="gantt-item" >${html}</div>`);
                 }
             }
         }
