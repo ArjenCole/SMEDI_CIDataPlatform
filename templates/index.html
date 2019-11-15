@@ -255,7 +255,7 @@
                     </div>
                     <div class="card-body text-left">
                           <div id="container">
-                              <div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>
+                              <!--div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div-->
                               <div id="hour" style="float:left">
                               </div>
                               <div class="carNum">
@@ -409,8 +409,7 @@
             // 创建时间
             createHours: function(){
                 var html = '';
-
-
+                html +=`<div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>`
                 var today = new Date();
                 var thisMonth = today.getMonth() + 1;
                 var thisDay = today.getDate();
@@ -439,7 +438,6 @@
                         _left_offset = left_offset;
                         width = ((end_d - start_d + 1) * 30);
                         lastend_d=end_d;
-                        console.log(left_offset);
 //TODO:跨月份甘特图绘制
 //TODO:超出图示范围甘特图绘制
                         html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
