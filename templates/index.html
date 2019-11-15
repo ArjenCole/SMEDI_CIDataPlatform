@@ -38,7 +38,7 @@
                 text-align: center;
             }
             #hour {
-                width: 1550px;
+                width: 1510px;
             }
             #hour div{
                 width: 30px;
@@ -314,21 +314,21 @@
                 ],
                 innerData: [
                     {
-                        start: '2019/11/6',
-                        end: '2019/11/8',
-                        value: '测试点1',
+                        start: '2019/11/16',
+                        end: '2019/11/18',
+                        value: '11.16-11.18',
                         bg: 'green'
                     },
                     {
-                        start: '2019/11/12',
-                        end: '2019/11/13',
-                        value: '2',
+                        start: '2019-11-30',
+                        end: '2019-12-1',
+                        value: '11.30-12.1',
                         bg: 'red'
                     },
                     {
-                        start: '2019/11/14',
-                        end: '2019/11/18',
-                        value: '测试点3',
+                        start: '2019,12,5',
+                        end: '2020,1,2',
+                        value: '12.5-1.2',
                         bg: 'green'
                     }
                 ]
@@ -375,7 +375,7 @@
                 innerData: [
                 {
                 start: '2019/11/6 8:23',
-                end: '2019/11/7 10:05',
+                end: '2019/11/8 10:05',
                 value: 'A站点',
                 bg: 'blue'
                 },
@@ -386,8 +386,8 @@
                 bg: 'green'
                 },
                 {
-                start: '2019/11/10 22:00',
-                end: '2019/11/11 3:35',
+                start: '2019/12/10',
+                end: '2020/1/1',
                 value: 'C站点',
                 bg: 'red'
                 },
@@ -415,37 +415,82 @@
                 var thisDay = today.getDate();
                 for (let i = thisDay; i < thisDay + 47; i++){
                     var tStr = new Date();
-                    tStr.setDate(today.getDate() + i - 1);
+                    tStr.setDate(i);
                     html += `<div>${tStr.getDate()}</div>`
                 }
                 document.getElementById('hour').innerHTML = html;
             },
             createData: function() {
                 var data = this.demoData;
-                var today = new Date().getDate(); // 今天的日期
+                var today = new Date(); // 今天的日期
+                var lastday = new Date();//显示日历的最后一天
+                lastday.setDate(today.getDate() + 46);
                 for (let m = 0; m< data.length; m++) {
                     var staff = data[m].staff[0].name;
                     var innerData = data[m].innerData;
                     var html = ''
-                    html =`<span style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
-                    var allLeft = 0;
-                    var lastend_d = today - 1;
+                    var namehtml =`<span style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
+                    var lastDate = today;//目前标注的最后一天
                     for (let i = 0; i< innerData.length; i++) {
                         var start = new Date(innerData[i].start),
                         end = new Date(innerData[i].end),
                         bg = innerData[i].bg,
-                        start_d = start.getDate(),
                         end_d = end.getDate(),
-                        left_offset = (start_d - lastend_d - 1) * 30
+                        left_offset = (this.diffDays(start,lastDate)) * 30;
+
+                        if (start.getTime() < today.getTime()) {
+                            if(end.getTime() < today.getTime()){
+                                console.log("i1");
+                                continue;
+                            }
+                            if(end.getTime() > today.getTime()){
+                                console.log("i2");
+                                //left_offset = (start_d - lastend_d - 1) * 30;
+                                left_offset = (this.diffDays(start,today) - 1) * 30;
+                            }
+                        }
+                        if (end.getTime() > lastday.getTime()) {
+                            if(start.getTime() > lastday.getTime()){
+                                console.log("i3");
+                                continue;
+                            }
+                            if(start.getTime() < lastday.getTime()){
+                                console.log("i4");
+                                end = lastday;
+                            }
+                        }
+
+
                         _left_offset = left_offset;
-                        width = ((end_d - start_d + 1) * 30);
-                        lastend_d=end_d;
+                        width = (Math.abs(this.diffDays(end,start)) + 1) * 30;
+
+
+                        console.log('move!',lastDate,end);
+                        if(lastDate.getTime() < end.getTime()){
+                            lastDate = end;
+                            lastDate.setDate(lastDate.getDate() + 1);
+                        }
+
 //TODO:跨月份甘特图绘制
 //TODO:超出图示范围甘特图绘制
                         html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
                     }
-                    document.getElementById('container').innerHTML += `<div class="gantt-item" >${html}</div>`;
+                    if(html == ''){
+                        html = `<span style="width:0px;margin-left:0px;background:white"></span>`
+                    }
+                    document.getElementById('container').innerHTML += `<div class="gantt-item" >${namehtml + html}</div>`;
                 }
+            },
+            diffDays: function (pDate1, pDate2) {
+                var  oDate1,  oDate2,  iDays
+                oDate1  =  new  Date(pDate1.getFullYear() + ',' + (pDate1.getMonth() + 1).toString() + ',' + pDate1.getDate())    //转换为12-18-2002格式
+                oDate2  =  new  Date(pDate2.getFullYear() + ',' + (pDate2.getMonth() + 1).toString() + ',' + pDate2.getDate())
+                iDays  =  parseInt((oDate1  -  oDate2)  /  1000  /  60  /  60  /24)    //把相差的毫秒数转换为天数
+                console.log("diff");
+                console.log(oDate1);
+                console.log(oDate2);
+                console.log(iDays);
+                return  iDays
             }
         }
         gantt.init();
