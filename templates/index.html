@@ -374,14 +374,14 @@
                 ],
                 innerData: [
                 {
-                start: '2019/11/6 8:23',
-                end: '2019/11/8 10:05',
+                start: '2019/11/6',
+                end: '2019/11/8',
                 value: 'A站点',
                 bg: 'blue'
                 },
                 {
-                start: '2019/11/8 13:23',
-                end: '2019/1/9 14:45',
+                start: '2019/11/9',
+                end: '2019/1/10',
                 value: 'B站点',
                 bg: 'green'
                 },
@@ -390,12 +390,6 @@
                 end: '2020/1/1',
                 value: 'C站点',
                 bg: 'red'
-                },
-                {
-                start: '2019/11/12 4:00',
-                end: '2019/11/13 7:35',
-                value: 'D站点',
-                bg: 'green'
                 },
                 ]
             },
@@ -411,7 +405,6 @@
                 var html = '';
                 html +=`<div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>`
                 var today = new Date();
-                var thisMonth = today.getMonth() + 1;
                 var thisDay = today.getDate();
                 for (let i = thisDay; i < thisDay + 47; i++){
                     var tStr = new Date();
@@ -423,7 +416,8 @@
             createData: function() {
                 var data = this.demoData;
                 var today = new Date(); // 今天的日期
-                var lastday = new Date();//显示日历的最后一天
+                today = new Date(today.getFullYear() + "," + (today.getMonth() + 1).toString() + "," + today.getDate());
+                var lastday = new Date(today.getFullYear() + "," + (today.getMonth() + 1).toString() + "," + today.getDate());//显示日历的最后一天
                 lastday.setDate(today.getDate() + 46);
                 for (let m = 0; m< data.length; m++) {
                     var staff = data[m].staff[0].name;
@@ -435,7 +429,6 @@
                         var start = new Date(innerData[i].start),
                         end = new Date(innerData[i].end),
                         bg = innerData[i].bg,
-                        end_d = end.getDate(),
                         left_offset = (this.diffDays(start,lastDate)) * 30;
 
                         if (start.getTime() < today.getTime()) {
@@ -460,14 +453,13 @@
                             }
                         }
 
-
                         _left_offset = left_offset;
                         width = (Math.abs(this.diffDays(end,start)) + 1) * 30;
 
 
                         console.log('move!',lastDate,end);
                         if(lastDate.getTime() < end.getTime()){
-                            lastDate = end;
+                            lastDate = new Date(end);
                             lastDate.setDate(lastDate.getDate() + 1);
                         }
 
@@ -483,10 +475,11 @@
             },
             diffDays: function (pDate1, pDate2) {
                 var  oDate1,  oDate2,  iDays
+                console.log("diff");
+
                 oDate1  =  new  Date(pDate1.getFullYear() + ',' + (pDate1.getMonth() + 1).toString() + ',' + pDate1.getDate())    //转换为12-18-2002格式
                 oDate2  =  new  Date(pDate2.getFullYear() + ',' + (pDate2.getMonth() + 1).toString() + ',' + pDate2.getDate())
                 iDays  =  parseInt((oDate1  -  oDate2)  /  1000  /  60  /  60  /24)    //把相差的毫秒数转换为天数
-                console.log("diff");
                 console.log(oDate1);
                 console.log(oDate2);
                 console.log(iDays);
