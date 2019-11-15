@@ -38,7 +38,7 @@
                 text-align: center;
             }
             #hour {
-                width: 1350px;
+                width: 1550px;
             }
             #hour div{
                 width: 30px;
@@ -49,7 +49,7 @@
                 box-sizing: border-box;
             }
             .gantt-item {
-                width: 1500px;
+                width: 1510px;
             }
             .gantt-item:hover{
                 background:rgba(0,0,0,.1);
@@ -413,7 +413,7 @@
                 var today = new Date();
                 var thisMonth = today.getMonth() + 1;
                 var thisDay = today.getDate();
-                for (let i = thisDay; i < thisDay + 45; i++){
+                for (let i = thisDay; i < thisDay + 47; i++){
                     html += `<div>${i}</div>`
                 }
                 document.getElementById('hour').innerHTML = html;
