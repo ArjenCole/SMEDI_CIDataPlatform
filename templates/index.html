@@ -458,7 +458,7 @@
                     var staff = data[m].staff[0].name;
                     var innerData = data[m].innerData;
                     var html = ''
-                    var namehtml =`<span onclick="test('` + (data[m].staff[0].name).toString() + `')" style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
+                    var namehtml =`<span style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
                     console.log('namehtml=',namehtml);
                     var lastDate = new Date(today);//目前标注的最后一天
                     for (let i = 0; i< innerData.length; i++) {
@@ -505,7 +505,7 @@
                     if(html == ''){
                         html = `<span style="width:0px;margin-left:0px;background:white"></span>`
                     }
-                    document.getElementById(pElementId).innerHTML += `<div class="gantt-item" >${namehtml + html}</div>`;
+                    document.getElementById(pElementId).innerHTML += `<div onclick="test(1)" class="gantt-item" >${namehtml + html}</div>`;
                 }
             },
             diffDays: function (pDate1, pDate2) {
