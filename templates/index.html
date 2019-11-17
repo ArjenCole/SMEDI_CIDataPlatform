@@ -320,14 +320,14 @@
                         bg: 'green'
                     },
                     {
-                        start: '2019-11-30',
-                        end: '2019-12-1',
+                        start: '2019/11/30',
+                        end: '2019/12/1',
                         value: '11.30-12.1',
                         bg: 'red'
                     },
                     {
-                        start: '2019,12,5',
-                        end: '2020,1,2',
+                        start: '2019/12/5',
+                        end: '2020/1/2',
                         value: '12.5-1.2',
                         bg: 'green'
                     }
@@ -416,8 +416,8 @@
             createData: function() {
                 var data = this.demoData;
                 var today = new Date(); // 今天的日期
-                today = new Date(today.getFullYear() + "," + (today.getMonth() + 1).toString() + "," + today.getDate());
-                var lastday = new Date(today.getFullYear() + "," + (today.getMonth() + 1).toString() + "," + today.getDate());//显示日历的最后一天
+                today = new Date(today.getFullYear() + "/" + (today.getMonth() + 1).toString() + "/" + today.getDate());
+                var lastday = new Date(today.getFullYear() + "/" + (today.getMonth() + 1).toString() + "/" + today.getDate());//显示日历的最后一天
                 lastday.setDate(today.getDate() + 46);
                 for (let m = 0; m< data.length; m++) {
                     var staff = data[m].staff[0].name;
@@ -477,8 +477,10 @@
                 var  oDate1,  oDate2,  iDays
                 console.log("diff");
 
-                oDate1  =  new  Date(pDate1.getFullYear() + ',' + (pDate1.getMonth() + 1).toString() + ',' + pDate1.getDate())    //转换为12-18-2002格式
-                oDate2  =  new  Date(pDate2.getFullYear() + ',' + (pDate2.getMonth() + 1).toString() + ',' + pDate2.getDate())
+                oDate1  =  new  Date(pDate1.getFullYear() + '/' + (pDate1.getMonth() + 1).toString() + '/' + pDate1.getDate())    //转换为12-18-2002格式
+                oDate2  =  new  Date(pDate2.getFullYear() + '/' + (pDate2.getMonth() + 1).toString() + '/' + pDate2.getDate())
+                //oDate1  =  new  Date('2018/05/25')    //转换为12-18-2002格式
+                //oDate2  =  new  Date('2018/05/20')
                 iDays  =  parseInt((oDate1  -  oDate2)  /  1000  /  60  /  60  /24)    //把相差的毫秒数转换为天数
                 console.log(oDate1);
                 console.log(oDate2);
