@@ -27,7 +27,7 @@
 
     <!-- JS版甘特图 -->
         <style type="text/css">
-            #container {
+            #teamContainer, #userContainer, #missionContainer {
                 width: 100%;
                 height: calc(30vh - 0px);
                 width: calc(100%);
@@ -37,10 +37,10 @@
                 width:100px;
                 text-align: center;
             }
-            #hour {
+            #teamDates, #userDates, #missionDates {
                 width: 1510px;
             }
-            #hour div{
+            #teamDates div{
                 width: 30px;
                 float: left;
                 border-left: 1px solid #ddd;
@@ -48,6 +48,23 @@
                 text-align: center;
                 box-sizing: border-box;
             }
+            #userDates div{
+                width: 30px;
+                float: left;
+                border-left: 1px solid #ddd;
+                background: #ccc;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            #missionDates div{
+                width: 30px;
+                float: left;
+                border-left: 1px solid #ddd;
+                background: #ccc;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
             .gantt-item {
                 width: 1510px;
             }
@@ -251,15 +268,42 @@
               <section class="col-lg-12">
                   <div class="card">
                     <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">团队进度</h3>
+                    </div>
+                    <div class="card-body text-left">
+                          <div id="teamContainer">
+                              <!--div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div-->
+                              <div id="teamDates" style="float:left"></div>
+                              <div class="carNum">
+                                  <div style="line-height:0px;color:#fff;"> </div><!--不知道为啥不能删！-->
+                              </div>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">人员进度</h3>
+                    </div>
+                    <div class="card-body text-left">
+                          <div id="userContainer">
+                              <!--div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div-->
+                              <div id="userDates" style="float:left"></div>
+                              <div class="carNum">
+                                  <div style="line-height:0px;color:#fff;"> </div><!--不知道为啥不能删！-->
+                              </div>
+                          </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header d-flex align-items-center">
                       <h3 class="h4">任务进度</h3>
                     </div>
                     <div class="card-body text-left">
-                          <div id="container">
+                          <div id="missionContainer">
                               <!--div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div-->
-                              <div id="hour" style="float:left">
-                              </div>
+                              <div id="missionDates" style="float:left"></div>
                               <div class="carNum">
-                                  <div style="line-height:0px;color:#fff;">.</div><!--不知道为啥不能删！-->
+                                  <div style="line-height:0px;color:#fff;"> </div><!--不知道为啥不能删！-->
                               </div>
                           </div>
                     </div>
@@ -390,12 +434,15 @@
             ],
             // 初始化
             init: function() {
-                //this.showNowTime();
-                this.createHours();
-                this.createData();
+                this.createHours('teamDates');
+                this.createData('teamContainer');
+                this.createHours('userDates');
+                this.createData('userContainer');
+                this.createHours('missionDates');
+                this.createData('missionContainer');
             },
             // 创建表头
-            createHours: function(){
+            createHours: function(pElementId){
                 var html = '';
                 html +=`<div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>`
                 var today = new Date();
@@ -405,9 +452,9 @@
                     tStr.setDate(i);
                     html += `<div>${tStr.getDate()}</div>`
                 }
-                document.getElementById('hour').innerHTML = html;
+                document.getElementById(pElementId).innerHTML = html;
             },
-            createData: function() {
+            createData: function(pElementId) {
                 var data = this.demoData;
                 var today = new Date(); // 今天的日期
                 today = new Date(today.getFullYear() + "/" + (today.getMonth() + 1).toString() + "/" + today.getDate());
@@ -463,7 +510,7 @@
                     if(html == ''){
                         html = `<span style="width:0px;margin-left:0px;background:white"></span>`
                     }
-                    document.getElementById('container').innerHTML += `<div class="gantt-item" >${namehtml + html}</div>`;
+                    document.getElementById(pElementId).innerHTML += `<div class="gantt-item" >${namehtml + html}</div>`;
                 }
             },
             diffDays: function (pDate1, pDate2) {
