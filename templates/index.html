@@ -505,7 +505,11 @@
                     if(html == ''){
                         html = `<span style="width:0px;margin-left:0px;background:white"></span>`
                     }
-                    document.getElementById(pElementId).innerHTML += `<div onclick="test(1)" class="gantt-item" >${namehtml + html}</div>`;
+                    var eventCat = 'onclick="test(1)"';
+                    if (pElementId == 'missionContainer'){
+                        eventCat = 'ondblclick="test(2)"';
+                    }
+                    document.getElementById(pElementId).innerHTML += `<div ` + eventCat + ` class="gantt-item" >${namehtml + html}</div>`;
                 }
             },
             diffDays: function (pDate1, pDate2) {
