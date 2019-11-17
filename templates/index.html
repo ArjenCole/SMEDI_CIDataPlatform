@@ -326,12 +326,6 @@
             </div>
           </footer>
         </div>
-
-
-
-
-
-
       </div>
     </div>
 
@@ -464,7 +458,8 @@
                     var staff = data[m].staff[0].name;
                     var innerData = data[m].innerData;
                     var html = ''
-                    var namehtml =`<span style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
+                    var namehtml =`<span onclick="test('` + (data[m].staff[0].name).toString() + `')" style="width:100px;float:left;color:#000;background:none;font-size: 15px">${staff}</span>`;
+                    console.log('namehtml=',namehtml);
                     var lastDate = new Date(today);//目前标注的最后一天
                     for (let i = 0; i< innerData.length; i++) {
                         var start = new Date(innerData[i].start),
@@ -515,20 +510,22 @@
             },
             diffDays: function (pDate1, pDate2) {
                 var  oDate1,  oDate2,  iDays
-                console.log("diff");
-
+                //console.log("diff");
                 oDate1  =  new  Date(pDate1.getFullYear() + '/' + (pDate1.getMonth() + 1).toString() + '/' + pDate1.getDate())    //转换为12-18-2002格式
                 oDate2  =  new  Date(pDate2.getFullYear() + '/' + (pDate2.getMonth() + 1).toString() + '/' + pDate2.getDate())
-                //oDate1  =  new  Date('2018/05/25')    //转换为12-18-2002格式
-                //oDate2  =  new  Date('2018/05/20')
+
                 iDays  =  parseInt((oDate1  -  oDate2)  /  1000  /  60  /  60  /24)    //把相差的毫秒数转换为天数
-                console.log(oDate1);
-                console.log(oDate2);
-                console.log(iDays);
+                //console.log(oDate1);
+                //console.log(oDate2);
+                //console.log(iDays);
                 return  iDays
-            }
+            },
+
         }
         gantt.init();
+		function test(param) {
+            alert("hello world" + param);
+        }
     </script>
 </body>
 </html>
