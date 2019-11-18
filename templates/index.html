@@ -428,15 +428,15 @@
             ],
             // 初始化
             init: function() {
-                this.createHours('teamDates');
+                this.createDates('teamDates');
                 this.createData('teamContainer');
-                this.createHours('userDates');
+                this.createDates('userDates');
                 this.createData('userContainer');
-                this.createHours('missionDates');
+                this.createDates('missionDates');
                 this.createData('missionContainer');
             },
             // 创建表头
-            createHours: function(pElementId){
+            createDates: function(pElementId){
                 var html = '';
                 html +=`<div style="background:#ccc;width: 100px;float:left;text-align: center">姓名</div>`
                 var today = new Date();
