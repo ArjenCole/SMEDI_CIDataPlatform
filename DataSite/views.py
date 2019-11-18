@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from DataSite import viewscheck
+from DataSite import views_check
 # Create your views here.
 
 
@@ -50,7 +50,7 @@ def check(request):
                 tFile.write(line)
             tFile.close()
             # checkList = ['physics', 'chemistry', 1997, 2000]
-            checkList = viewscheck.CheckFile(tFilePath)
+            checkList = views_check.CheckFile(tFilePath)
             return render(request, "check.html", {"checkList": checkList})
 
 
