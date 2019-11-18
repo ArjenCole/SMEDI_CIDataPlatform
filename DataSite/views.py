@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+from DataSite import views_login
 from DataSite import views_check
 # Create your views here.
 
@@ -15,7 +16,7 @@ def home(request):
 
 
 def login(request):
-    return render(request, "login.html",)
+    return views_login.login(request)
 
 
 def register(request):
