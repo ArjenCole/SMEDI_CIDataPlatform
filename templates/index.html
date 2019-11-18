@@ -364,8 +364,8 @@
                         bg: 'red'
                     },
                     {
-                        start: '2019/12/5',
-                        end: '2020/1/2',
+                        start: '2020/1/3',
+                        end: '2020/1/5',
                         value: '12.5-1.2',
                         bg: 'green'
                     }
@@ -472,7 +472,7 @@
                                 console.log("i1");
                                 continue;
                             }
-                            if(end.getTime() > today.getTime()){
+                            if(end.getTime() >= today.getTime()){
                                 console.log("i2");
                                 start = new Date(today);
                             }
@@ -482,25 +482,29 @@
                                 console.log("i3");
                                 continue;
                             }
-                            if(start.getTime() < lastday.getTime()){
+                            if(start.getTime() <= lastday.getTime()){
                                 console.log("i4");
                                 end = new Date(lastday);
                             }
                         }
+
+                        console.log('s',start);
+                        console.log('e',end);
+                        console.log('l',lastDate);
 
                         left_offset = (this.diffDays(start,lastDate)) * 30;
                         _left_offset = left_offset;
                         width = (Math.abs(this.diffDays(end,start)) + 1) * 30;
 
                         console.log('move!',lastDate,end);
-                        if(lastDate.getTime() < end.getTime()){
+                        if(lastDate.getTime() <= end.getTime()){
                             lastDate = new Date(end);
                             lastDate.setDate(lastDate.getDate() + 1);
                         }
 
 //TODO:跨月份甘特图绘制
 //TODO:超出图示范围甘特图绘制
-                        html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}">${innerData[i].value}</span>`;
+                        html += `<span style="width:${width}px;margin-left:${_left_offset}px;background:${bg}"></span>`;//${innerData[i].value}
                     }
                     if(html == ''){
                         html = `<span style="width:0px;margin-left:0px;background:white"></span>`
