@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'SMEDI_CIDataPlatform.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # mysql数据库引擎
-        'NAME': 'db_django_cidp',  # 数据库名字
+        'NAME': 'db_django_menu',  # 数据库名字
         'USER': 'root',  # 用户名
         'PASSWORD': '123456',  # 密码
         'HOST': 'localhost',  # 主机

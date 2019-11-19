@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
-from DataSite.models import Users
 import hashlib
 import base64
 import time
@@ -10,26 +9,7 @@ import json
 
 
 def login(request):
-    if request.method == 'GET':
-        return render(request, "login.html")
-    if request.method == 'POST':
-        account = request.POST.get("loginUseraccount", None)
-        password = request.POST.get("loginPassword", None)
-        a = (account + password)
-        epassword = encode(a)
-        try:
-            qUser = Users.objects.get(Account=account)
-            dbPassword = qUser.Password
-        except:
-            return render(request, 'login.html', {'error': "查无此账号！"}, )
-        if epassword == dbPassword:
-            request.session['UserAccount'] = qUser.Account
-            request.session['UserName'] = qUser.Name
-            request.session['UserDepartment'] = getDepartment(qUser)
-            request.session.set_expiry(600)
-            return render(request, "index.html")
-        else:
-            return render(request, 'login.html', {'error': "账号密码错误！"}, )
+    return render(request, 'login.html', {'error': "账号密码错误！"}, )
 
 
 def getDepartment(pUser):
