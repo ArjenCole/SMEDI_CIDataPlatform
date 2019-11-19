@@ -18,12 +18,12 @@ class Users(models.Model):
 
 class Departments(models.Model):
     """部门"""
-    name = models.CharField(max_length=40)
-    abbreviation = models.CharField(max_length=40)
-    parent = models.CharField(max_length=40, null=True)
-    users = models.ManyToManyField(Users)
-    remark = models.CharField(max_length=40, null=True)
+    Name = models.CharField(max_length=40)
+    Abbreviation = models.CharField(max_length=40)
+    Parent = models.CharField(max_length=40, null=True)
+    Users = models.ManyToManyField(Users)
+    Remark = models.CharField(max_length=40, null=True)
 
     def __unicode__(self):
-        return self.name
+        return self.Name
 
