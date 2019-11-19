@@ -20,7 +20,7 @@ class Departments(models.Model):
     """部门"""
     name = models.CharField(max_length=40)
     abbreviation = models.CharField(max_length=40)
-    parent = models.CharField(max_length=40)
+    parent = models.CharField(max_length=40, null=True)
     users = models.ManyToManyField(Users)
     remark = models.CharField(max_length=40, null=True)
 
