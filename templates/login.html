@@ -49,13 +49,14 @@
                 <div class="content">
                   <form method="post" class="form-validate">
                     <div class="form-group">
-                      <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material">
-                      <label for="login-username" class="label-material">用户名称</label>
+                      <input id="login-useraccount" type="text" name="loginUseraccount" required data-msg="Please enter your useraccount" class="input-material">
+                      <label for="login-useraccount" class="label-material">账户名称</label>
                     </div>
                     <div class="form-group">
                       <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material">
                       <label for="login-password" class="label-material">密码</label>
-                    </div><a id="login" href="/index/" class="btn btn-primary"> 登 录 </a>
+                    </div>
+                    <button id="login" type="submit" class="btn btn-primary"> 登 录 </button><!--href="/index/" -->
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                   </form><a href="#" class="forgot-pass">忘记密码？</a><br><small>还未注册账户？ </small><a href="/register/" class="signup">立即注册</a>
                 </div>
