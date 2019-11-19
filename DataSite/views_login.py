@@ -13,24 +13,21 @@ def login(request):
     if request.method == 'GET':
         return render(request, "login.html")
     if request.method == 'POST':
-        result = checkin(request.POST)
-        if result == "登陆失败":
-            return render(request, "login.html", {'error': "账号密码错误！"})
+        account = request.POST.get("loginUseraccount", None)
+        password = request.POST.get("loginPassword", None)
+        a = (account + password)
+        epassword = encode(a)
+        try:
+            qUser = Users.objects.get(Account=account)
+            dbPassword = qUser.Password
+        except:
+            return render(request, 'login.html', {'error': "查无此账号"}, )
+        if epassword == dbPassword:
+            request.session['UserName'] = qUser.Name
+            request.session.set_expiry(600)
+            return render(request, "index.html")
         else:
-            return render(request, "index.html", {'data': result})
-
-
-def checkin(post):
-    account = post.get("loginUseraccount", None)
-    password = post.get("loginPassword", None)
-    a = (account + password)
-    epassword = encode(a)
-    q1 = Users.objects.filter(Account=account)
-    q2 = q1.filter(Password=epassword)
-    if q2.count() > 0:
-        return q2[0]
-    else:
-        return "登陆失败"
+            return render(request, 'login.html', {'error': "账号密码错误！"}, )
 
 
 def encode(s):
