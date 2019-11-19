@@ -24,10 +24,22 @@ def login(request):
             return render(request, 'login.html', {'error': "查无此账号！"}, )
         if epassword == dbPassword:
             request.session['UserName'] = qUser.Name
+            request.session['UserDepartment'] = getDepartment(qUser)
             request.session.set_expiry(600)
             return render(request, "index.html")
         else:
             return render(request, 'login.html', {'error': "账号密码错误！"}, )
+
+
+def getDepartment(pUser):
+    try:
+        departmentset = pUser.departments_set.all()
+        rtDep = "";
+        for fDep in departmentset:
+            rtDep = rtDep + " " + fDep.Name
+    except:
+        rtDep = " "
+    return rtDep
 
 
 def encode(s):

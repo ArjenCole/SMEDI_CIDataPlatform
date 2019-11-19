@@ -177,18 +177,13 @@
             <div class="avatar"><img src="../static/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
             <div class="title">
               <!--h1 class="h4">{{ request.session.UserName }}</h1-->
-
-
-
                 {% if request.session.UserName %}
                     <h1 class="h4">{{ request.session.UserName }} </h1>
+                    <p>{{ request.session.UserDepartment }} </p>
                 {% else %}
                     <h1 class="h4">游客 </h1>
+                    <p> </p>
                 {% endif %}
-
-
-
-              <p>综合八所</p>
             </div>
           </div>
           <!-- Sidebar Navidation Menus--><span class="heading">项目管理</span>
