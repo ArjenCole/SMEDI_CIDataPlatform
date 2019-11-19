@@ -21,7 +21,7 @@ def login(request):
             qUser = Users.objects.get(Account=account)
             dbPassword = qUser.Password
         except:
-            return render(request, 'login.html', {'error': "查无此账号"}, )
+            return render(request, 'login.html', {'error': "查无此账号！"}, )
         if epassword == dbPassword:
             request.session['UserName'] = qUser.Name
             request.session.set_expiry(600)
