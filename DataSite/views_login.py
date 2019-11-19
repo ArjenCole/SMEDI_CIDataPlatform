@@ -15,7 +15,7 @@ def login(request):
     if request.method == 'POST':
         result = checkin(request.POST)
         if result == "登陆失败":
-            return render(request, "login.html")
+            return render(request, "login.html", {'error': "账号密码错误！"})
         else:
             return render(request, "index.html", {'data': result})
 
