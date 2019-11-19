@@ -23,6 +23,7 @@ def login(request):
         except:
             return render(request, 'login.html', {'error': "查无此账号！"}, )
         if epassword == dbPassword:
+            request.session['UserAccount'] = qUser.Account
             request.session['UserName'] = qUser.Name
             request.session['UserDepartment'] = getDepartment(qUser)
             request.session.set_expiry(600)
