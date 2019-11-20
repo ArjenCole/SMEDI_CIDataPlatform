@@ -16,24 +16,13 @@ def login(request):
     else:
         username = request.POST.get('loginUseraccount')
         password = request.POST.get('loginPassword')
-        user_obj = UserInfo.objects.filter(username=username, password=password).first()
+        epassword = encode(username + password)
+        user_obj = UserInfo.objects.filter(username=username, password=epassword).first()
         if not user_obj:
             return render(request, "login.html", {'error': '用户名或密码错误！'})
         else:
             init_permission(request, user_obj)  # 调用init_permission，初始化权限
             return redirect('/index/')
-
-
-
-def getDepartment(pUser):
-    try:
-        departmentset = pUser.departments_set.all()
-        rtDep = "";
-        for fDep in departmentset:
-            rtDep = rtDep + " " + fDep.Name
-    except:
-        rtDep = " "
-    return rtDep
 
 
 def encode(s):
