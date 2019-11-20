@@ -54,7 +54,7 @@ class UserInfo(models.Model):
     用户：划分角色
     """
     username = models.CharField(max_length=32)
-    password = models.CharField(max_length=64)
+    password = models.CharField(max_length=256)
     nickname = models.CharField(max_length=32)
     email = models.EmailField()
 
