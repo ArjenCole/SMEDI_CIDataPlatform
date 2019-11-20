@@ -37,3 +37,4 @@ def init_permission(request, user_obj):
         settings.ALL_MENU_KEY: menu_list,
         settings.PERMISSION_MENU_KEY: permission_menu_list,
     }
+    request.session.set_expiry(600)
