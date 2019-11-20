@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.shortcuts import HttpResponse
 import hashlib
 import base64
+from rbac.models import UserInfo
+from rbac.service.init_permission import init_permission
 import time
 import datetime
 import json
@@ -9,7 +11,18 @@ import json
 
 
 def login(request):
-    return render(request, 'login.html', {'error': "账号密码错误！"}, )
+    if request.method == "GET":
+        return render(request, "login.html")
+    else:
+        username = request.POST.get('loginUseraccount')
+        password = request.POST.get('loginPassword')
+        user_obj = UserInfo.objects.filter(username=username, password=password).first()
+        if not user_obj:
+            return render(request, "login.html", {'error': '用户名或密码错误！'})
+        else:
+            init_permission(request, user_obj)  # 调用init_permission，初始化权限
+            return redirect('/index/')
+
 
 
 def getDepartment(pUser):
