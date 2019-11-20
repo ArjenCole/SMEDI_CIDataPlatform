@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'DataSite',
+    'rbac',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rbac.middleware.rbac.RbacMiddleware',
 ]
 
 ROOT_URLCONF = 'SMEDI_CIDataPlatform.urls'
@@ -141,3 +143,17 @@ SESSION_PERMISSION_URL_KEY = 'cool'
 SESSION_MENU_KEY = 'awesome'
 ALL_MENU_KEY = 'k1'
 PERMISSION_MENU_KEY = 'k2'
+
+
+LOGIN_URL = '/login/'
+
+REGEX_URL = r'^{url}$'  # url作严格匹配
+
+# 配置url权限白名单
+SAFE_URL = [
+    r'/login/',
+    '/admin/.*',
+    '/test/',
+    '/index/',
+    '^/rbac/',
+]
