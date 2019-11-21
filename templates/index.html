@@ -179,7 +179,7 @@
               <!--h1 class="h4">{{ request.session.UserName }}</h1-->
                 {% if request.session.UserName %}
                     <h1 class="h4">{{ request.session.UserName }} </h1>
-                    <p>{{ request.session.UserDepartment }} </p>
+                    <p style="white-space: pre-line">{{ request.session.UserDepartment }} </p>
                 {% else %}
                     <h1 class="h4">游客 </h1>
                     <p> </p>

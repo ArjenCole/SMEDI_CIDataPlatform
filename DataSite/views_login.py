@@ -37,7 +37,7 @@ def getDepartment(pUser):
         departmentset = pUser.departments_set.all()
         rtDep = "";
         for fDep in departmentset:
-            rtDep = rtDep + " " + fDep.Name
+            rtDep = rtDep + '\n' + fDep.Name
     except:
         rtDep = " "
     return rtDep
